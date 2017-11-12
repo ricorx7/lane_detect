@@ -85,25 +85,25 @@ print(image.shape)
 cropTop = int(round(height * 0.45))
 cropBottom = int(round(height * 1.0))
 cropped = image[cropTop:cropBottom, :, :]
-cv2.imwrite('cropped.jpg', cropped)
+cv2.imwrite('1_cropped.jpg', cropped)
 print('Cropped')
 #cropped = image
 
 
 # convert to grayscale
 img_gray = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY)
-cv2.imwrite("1_grayscale.jpg", img_gray)
+cv2.imwrite("2_grayscale.jpg", img_gray)
 print("Grayscale")
 
 # perform gaussian blur
 #17,17 deafualt kernel
 img_blur = cv2.GaussianBlur(img_gray, (5, 5), 0)
-cv2.imwrite("2_blur.jpg", img_blur)
+cv2.imwrite("3_blur.jpg", img_blur)
 print("Blur")
 
 # perform edge detection
 img_edge = cv2.Canny(img_blur, threshold1=50, threshold2=80)
-cv2.imwrite("3_canny.jpg", img_edge)
+cv2.imwrite("4_canny.jpg", img_edge)
 print("Canny")
 
 # perform hough transform
@@ -151,12 +151,12 @@ lane_lines = detected_lines
 #line_img = np.zeros(shape=(img_h, img_w))
 line_img = image
 for lane in lane_lines:
-    print("Selected LIne: X1", lane.x1)
-    print("Selected LIne: Y1", lane.y1)
-    print("Selected LIne: X2", lane.x2)
-    print("Selected LIne: Y2", lane.y2)
+    #print("Selected LIne: X1", lane.x1)
+    #print("Selected LIne: Y1", lane.y1)
+    #print("Selected LIne: X2", lane.x2)
+    #print("Selected LIne: Y2", lane.y2)
     lane.draw(line_img, offset_y=cropTop)       # Add in cropped location
-cv2.imwrite("4_lines.jpg", line_img)
+cv2.imwrite("5_lines.jpg", line_img)
 print("Lines drawn")
 
 """
